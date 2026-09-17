@@ -22,5 +22,7 @@ Originales de la fuente Gobernación de Antioquia. Producto: Secretaría Seccion
 | `Nacimientos 2023.xls` | A | Nacidos vivos por sexo y por grupo de edad de la madre, según municipio de residencia, 2023. |
 | `Nacimientos 2024.xls` | A | Nacidos vivos por sexo y por grupo de edad de la madre, según municipio de residencia, 2024. |
 
+**Versión vigente (2026-09-17): `MORTALIDADINFMAT_ORIGINAL.xls`.** Cubre 2005-2025 y trae cifras revisadas frente a `Mortalidad Infantil (EDA, desnutrición, etc).xls` (2005-2024), que queda como no vigente.
+
 ---
 Categorías: **A** original tal como lo entregó la entidad · **B** original de captura o compilación (ver nota en el registro). La procedencia de todos los archivos está **por confirmar**. Detalle completo en el registro de la raíz y reglas en `00_Documentacion/`.

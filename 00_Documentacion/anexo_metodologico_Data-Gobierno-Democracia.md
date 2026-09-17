@@ -1,6 +1,6 @@
 # Anexo metodológico — Repositorio de datos originales Data-Gobierno-Democracia
 
-**Versión:** borrador 0.8 · **Fecha:** 2026-09-17 · **Estado:** en revisión
+**Versión:** borrador 0.9 · **Fecha:** 2026-09-17 · **Estado:** en revisión
 
 ---
 
@@ -432,12 +432,10 @@ Una actualización es un nuevo corte o una revisión de un producto que ya está
 - **Conservar** el archivo anterior, marcado como no vigente: el corte que sustentó cifras ya publicadas sigue disponible y verificable, pero el repositorio crece.
 - **Reemplazar** el archivo y dejar el historial en el control de versiones: el repositorio queda más limpio, pero los archivos binarios y pesados se recuperan con dificultad.
 
-Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nuevo corte entra junto al anterior. Ya hay precedentes de convivencia de versiones:
+Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nuevo corte entra junto al anterior. Cuando conviven varias versiones, la columna `version` del registro dice cuál es la vigente y la nota explica por qué. Casos ya resueltos: IRCA, mortalidad infantil y población. Otros casos de convivencia:
 
 - eventos de salud pública;
 - valor agregado municipal;
-- IRCA;
-- mortalidad infantil.
 
 ## 17. Estado actual y limitaciones
 
@@ -456,7 +454,7 @@ Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nue
   - la URL y la fecha de corte no están registradas;
   - 5 entidades están por confirmar;
   - 163 filas no tienen responsable.
-- **Versiones por confirmar:** el IRCA de Antioquia frente al histórico nacional, y dos ediciones de mortalidad infantil con las mismas hojas y valores distintos.
+- **Versiones declaradas el 2026-09-17:** IRCA (vigente el histórico nacional), mortalidad infantil (vigente la edición 2005-2025) y población (vigente PPED 2018-2042, con lo que el repositorio queda sin serie de referencia para 1985-2017).
 - **Un original no se puede leer:** defunciones no fetales 2022 está protegido con contraseña.
 - **Vocabulario sin unificar:**
   - unidades con criterios distintos: porcentaje, fracción 0-1 y escala 0-100;
@@ -477,6 +475,7 @@ La gestión de estos pendientes corresponde al equipo; el detalle está en las h
 | 0.6 | 2026-09-17 | La anonimización suprime también la geografía fina en texto libre: se retiró `BARRIOENC` de la encuesta de percepción | Pendiente |
 | 0.7 | 2026-09-17 | Script `verificar_integridad.py` para comprobar el manifiesto; el `.docx` y su procedimiento de generación quedan descritos en `00_Documentacion/README.md` | Pendiente |
 | 0.8 | 2026-09-17 | La encuesta anonimizada sale del repositorio mientras se decide P-18; se documenta que la versión ya publicada permanece en el historial de git | Pendiente |
+| 0.9 | 2026-09-17 | Versiones vigentes declaradas para IRCA, mortalidad infantil y población (P-08 y P-09 cerrados) | Pendiente |
 
 Este anexo se actualiza en tres casos:
 
