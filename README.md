@@ -7,7 +7,7 @@ Repositorio de **datos originales** de fuentes oficiales sobre los municipios de
 | Elemento | Qué es |
 |---|---|
 | `00_Documentacion/` | Anexo metodológico: criterios de admisión, protocolos y papel de personas y agentes de IA |
-| `01_Datos/` | 177 archivos versionados en carpetas por entidad fuente, más 3 originales pesados que quedan solo en el disco |
+| `01_Datos/` | 176 archivos versionados en carpetas por entidad fuente, más 4 archivos que quedan solo en el disco: 3 originales pesados y la encuesta anonimizada |
 | `registro_fuentes_variables.xlsx` | Registro de fuentes y variables: qué es cada archivo, su procedencia, las variables que contiene, brechas y pendientes |
 | `verificar_integridad.py` | Script que comprueba el manifiesto: recalcula los MD5 y avisa de cambios, pérdidas e ingresos no registrados |
 | `manifiesto_integridad.csv` | Ruta, peso y MD5 de cada archivo versionado de `01_Datos/`, para verificar que están todos y que ninguno cambió |

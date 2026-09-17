@@ -10,3 +10,8 @@ desktop.ini
 01_Datos/MinTIC/EMPAQUETAMIENTO_FIJO_3.csv
 01_Datos/DANE/Proyecciones_Poblacion/PPED-AreaSexoEdadMun-2018-2042_VP.xlsx
 01_Datos/Gobernacion_Antioquia/Encuesta_Percepcion_Seguridad/Data anonimizada encuesta percepcion 2018-2025.xlsx
+# Version anonimizada: fuera del repositorio hasta que se decida P-18 (riesgo de reidentificacion).
+01_Datos/Gobernacion_Antioquia/Encuesta_Percepcion_Seguridad/encuesta_percepcion_2018-2025_anonimizada.parquet
+
+# Hoja de trabajo del equipo: la version oficial de los pendientes esta en el registro.
+PENDIENTES.md

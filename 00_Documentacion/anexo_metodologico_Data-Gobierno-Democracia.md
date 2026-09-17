@@ -1,6 +1,6 @@
 # Anexo metodológico — Repositorio de datos originales Data-Gobierno-Democracia
 
-**Versión:** borrador 0.7 · **Fecha:** 2026-09-17 · **Estado:** en revisión
+**Versión:** borrador 0.8 · **Fecha:** 2026-09-17 · **Estado:** en revisión
 
 ---
 
@@ -259,7 +259,7 @@ open_dataset("EMPAQUETAMIENTO_FIJO_3.parquet")$schema$metadata
 |---|---|---|
 | `EMPAQUETAMIENTO_FIJO_3.csv` (MinTIC) | 718 MiB | 1 parquet, 39,7 MiB (3.572.367 filas × 22 columnas) |
 | `PPED-AreaSexoEdadMun-2018-2042_VP.xlsx` (DANE) | 126 MiB | 3 parquet, 30,1 MiB (hoja de datos: 84.229 filas × 312 columnas; portada y notas) |
-| `Data anonimizada encuesta percepcion 2018-2025.xlsx` (Gobernación) | 100 MiB | 1 parquet anonimizado, 5.59 MiB (23.216 filas × 1.356 columnas), categoría E |
+| `Data anonimizada encuesta percepcion 2018-2025.xlsx` (Gobernación) | 100 MiB | 1 parquet anonimizado, 5,59 MiB (23.216 filas × 1.356 columnas), categoría E. **Fuera del repositorio desde el 2026-09-17** mientras se decide P-18. |
 
 ### 10.4 Anonimización (categoría E)
 
@@ -442,7 +442,7 @@ Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nue
 ## 17. Estado actual y limitaciones
 
 - **Tres originales pesados** están en el disco pero no se versionan. Dos ya tienen su conversión a parquet en el repositorio; el de la encuesta de percepción no se convirtió (sección 10).
-- **La encuesta de percepción** entró anonimizada en sus identificadores directos y en el barrio del encuestado; conserva manzana del marco muestral, estrato, sexo y edad exacta, con riesgo residual de reidentificación (pendiente P-18).
+- **La encuesta de percepción** está fuera del repositorio, incluso en su versión anonimizada: la medición de riesgo (sección 10.4) mostró que casi la mitad de los registros son únicos. Vuelve a entrar cuando se decida P-18.
 - **La tabla maestra territorial está por construir**, con la conformación ya definida (sección 8).
 - **Hay 15 brechas abiertas**, siete de prioridad alta (sección 14).
 - **Registro de variables (320, nivel municipal):**
@@ -476,6 +476,7 @@ La gestión de estos pendientes corresponde al equipo; el detalle está en las h
 | 0.5 | 2026-09-17 | Categoría E y protocolo de anonimización; encuesta de percepción anonimizada y versionada en parquet | Pendiente |
 | 0.6 | 2026-09-17 | La anonimización suprime también la geografía fina en texto libre: se retiró `BARRIOENC` de la encuesta de percepción | Pendiente |
 | 0.7 | 2026-09-17 | Script `verificar_integridad.py` para comprobar el manifiesto; el `.docx` y su procedimiento de generación quedan descritos en `00_Documentacion/README.md` | Pendiente |
+| 0.8 | 2026-09-17 | La encuesta anonimizada sale del repositorio mientras se decide P-18; se documenta que la versión ya publicada permanece en el historial de git | Pendiente |
 
 Este anexo se actualiza en tres casos:
 

@@ -2,7 +2,7 @@
 
 Todos los datos originales del repositorio, organizados en una carpeta por entidad fuente. Aquí no hay archivos limpiados, recortados ni calculados: solo lo que entregó cada fuente.
 
-**177 archivos versionados** en 23 carpetas, más **3 originales de más de 100 MB** que están en el disco pero no se versionan (están en `.gitignore`; el repositorio guarda su conversión a parquet, ver `00_Documentacion/`, sección 10). Las carpetas que empiezan por guion bajo son transitorias.
+**176 archivos versionados** en 23 carpetas, más **4 archivos que están en el disco pero no se versionan**: 3 originales de más de 100 MB y la versión anonimizada de la encuesta de percepción (pendiente P-18) (están en `.gitignore`; el repositorio guarda su conversión a parquet, ver `00_Documentacion/`, sección 10). Las carpetas que empiezan por guion bajo son transitorias.
 
 | Carpeta | Entidad | Archivos |
 |---|---|---|
@@ -12,7 +12,7 @@ Todos los datos originales del repositorio, organizados en una carpeta por entid
 | `DNP/` | Departamento Nacional de Planeación (DNP) | 6 |
 | `Funcion_Publica_FURAG/` | Departamento Administrativo de la Función Pública – FURAG | 2 |
 | `Global_Forest_Watch/` | Global Forest Watch (World Resources Institute) | 1 |
-| `Gobernacion_Antioquia/` | Gobernación de Antioquia | 121 |
+| `Gobernacion_Antioquia/` | Gobernación de Antioquia | 120 |
 | `IDEAM/` | IDEAM (entidad por confirmar) | 1 |
 | `INS/` | Instituto Nacional de Salud (INS) | 7 |
 | `MEN/` | Ministerio de Educación Nacional (MEN) | 2 |

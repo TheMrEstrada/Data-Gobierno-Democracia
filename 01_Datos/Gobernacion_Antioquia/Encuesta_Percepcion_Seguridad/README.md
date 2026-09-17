@@ -1,13 +1,17 @@
 # Encuesta de percepción de seguridad
 
-**2 archivos versionados**, más el archivo de microdatos con identificadores, que está en esta carpeta pero no se versiona.
+**1 archivo versionado**. Los dos archivos de microdatos están en esta carpeta, pero no se versionan: ni el original con identificadores ni la versión anonimizada.
 
 | Archivo | Cat. | Contenido |
 |---|---|---|
 | `Diccionario de datos 033200250000 percepcion de seguridad_2025 (1).xlsx` | A | Diccionario de variables y valores de la encuesta de percepción de seguridad 2025. |
-| `encuesta_percepcion_2018-2025_anonimizada.parquet` | E | Microdatos 2018-2025 sin identificadores directos ni barrio del encuestado: 23.216 registros × 1.356 columnas. |
+
 
 `Data anonimizada encuesta percepcion 2018-2025.xlsx` (100 MiB, 23.216 registros × 1.363 columnas) se queda en esta carpeta, listado en `.gitignore`: no sale del computador de trabajo. Su MD5 está en el registro.
+
+`encuesta_percepcion_2018-2025_anonimizada.parquet` (5,59 MiB, 23.216 registros × 1.356 columnas) **salió del repositorio el 2026-09-17** mientras se decide el pendiente P-18: la medición de riesgo mostró que casi la mitad de los registros son únicos. Sigue en esta carpeta, en el disco, y su MD5 está en el registro.
+
+La versión que se publicó antes de esa fecha sigue en el historial de git del repositorio remoto: retirarla de ahí exige reescribir el historial.
 
 ## Anonimización
 
@@ -31,7 +35,19 @@ Además se buscaron correos, teléfonos y números de documento dentro de las re
 
 **Qué se conserva, por decisión del equipo:** `BARRIO` y `COMUNA_LOCALIDAD` del marco muestral (4.588 y 4.059 registros), código de manzana (7.569 registros), zona de muestreo, ruta, código de entrevistador, municipio, estrato, sexo, edad exacta, fecha y hora de la entrevista y las 102 columnas de respuesta abierta.
 
-**Riesgo residual.** Quitar el nombre, la dirección y el barrio declarado reduce el riesgo, no lo elimina. En los 7.569 registros con código de manzana, la manzana ubica la vivienda con más precisión que el barrio; y en los municipios pequeños, estrato, sexo y edad exacta siguen señalando a pocas personas. Las respuestas abiertas pueden mencionar lugares o situaciones reconocibles. Quien use este archivo no debe publicar resultados desagregados a un nivel que permita reconocer a un encuestado. Queda como pendiente **P-18** medir ese riesgo y decidir si el archivo se generaliza más.
+**Riesgo residual.** Quitar el nombre, la dirección y el barrio declarado reduce el riesgo, no lo elimina. En los 7.569 registros con código de manzana, la manzana ubica la vivienda con más precisión que el barrio; y en los municipios pequeños, estrato, sexo y edad exacta siguen señalando a pocas personas. Las respuestas abiertas pueden mencionar lugares o situaciones reconocibles. Quien use este archivo no debe publicar resultados desagregados a un nivel que permita reconocer a un encuestado. Queda como pendiente **P-18** decidir qué se hace con ese riesgo.
+
+**Medición del riesgo (2026-09-17).** Se contó, para varias combinaciones de variables, cuántos registros quedan solos (k = 1) o en grupos de menos de cinco (k < 5). La referencia habitual para microdatos de difusión es k ≥ 5.
+
+| Combinación | Registros | k = 1 | k < 5 |
+|---|---|---|---|
+| Municipio + zona + sexo + edad exacta + estrato | 23.216 | 10.843 (46,7 %) | 90,7 % |
+| Municipio + zona + sexo + rango quinquenal + estrato | 23.216 | 1.106 (4,8 %) | 24,3 % |
+| Manzana + sexo + edad exacta | 7.569 | 7.379 (97,5 %) | 100 % |
+| Manzana + sexo + rango quinquenal | 7.569 | 5.487 (72,5 %) | 99,9 % |
+| Municipio + barrio del marco + sexo + edad exacta | 4.588 | 3.981 (86,8 %) | 100 % |
+
+Lecturas: la edad exacta es lo que más individualiza, y agruparla en rangos quinquenales baja los registros únicos del 46,7 % al 4,8 %; el código de manzana identifica por sí solo, con o sin edad agrupada; el estrato aporta poco, porque 14.761 registros traen 98 o 99 (sin dato).
 
 **Verificación hecha:** ninguna de las columnas suprimidas sobrevive en el parquet, y ninguna respuesta abierta contiene correos ni teléfonos. El parquet conserva, en sus metadatos, el MD5 del archivo de origen, las columnas suprimidas y el alcance de la anonimización; cada columna guarda además el texto de su pregunta.
 

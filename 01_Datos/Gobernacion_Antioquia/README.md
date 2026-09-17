@@ -2,7 +2,7 @@
 
 Originales cuya fuente es: Gobernación de Antioquia.
 
-**121 archivos versionados** en 9 subcarpetas.
+**120 archivos versionados** en 9 subcarpetas.
 
 | Subcarpeta | Contenido | Archivos |
 |---|---|---|
