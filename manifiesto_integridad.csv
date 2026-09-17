@@ -14,6 +14,9 @@ ruta,archivo,categoria,bytes,md5,fecha_ingreso
 01_Datos/DANE/Marco_Geoestadistico/MGN_MPIO_POLITICO.shp,MGN_MPIO_POLITICO.shp,A,9141820,bb0310d19f3c862e9890e990a44fcac7,2026-09-16
 01_Datos/DANE/Marco_Geoestadistico/MGN_MPIO_POLITICO.shx,MGN_MPIO_POLITICO.shx,A,1100,99ec5f55e67cacd3b792f11060f72066,2026-09-16
 01_Datos/DANE/Proyecciones_Poblacion/POBLACION MUNICIPAL.xlsx,POBLACION MUNICIPAL.xlsx,B,38006839,86e9af32bc4980542c37303efe657e10,2026-09-16
+01_Datos/DANE/Proyecciones_Poblacion/PPED-AreaSexoEdadMun-2018-2042_VP__Indice.parquet,PPED-AreaSexoEdadMun-2018-2042_VP__Indice.parquet,D,2344,5d8973430f991a1e0976f3340f4a39e3,2026-09-17
+01_Datos/DANE/Proyecciones_Poblacion/PPED-AreaSexoEdadMun-2018-2042_VP__PPED.parquet,PPED-AreaSexoEdadMun-2018-2042_VP__PPED.parquet,D,2552,415112aae0665f007238a48ea09d48a1,2026-09-17
+01_Datos/DANE/Proyecciones_Poblacion/PPED-AreaSexoEdadMun-2018-2042_VP__PobMunicipalxAreaSexoEdad.parquet,PPED-AreaSexoEdadMun-2018-2042_VP__PobMunicipalxAreaSexoEdad.parquet,D,31568590,6fa3ffe20c8c7810eaa1c72e9a49615a,2026-09-17
 01_Datos/DNP/Desempeno_Fiscal_IDF/Consulta IDF - DNP.xlsx,Consulta IDF - DNP.xlsx,B,94476,f3ab4dbb70027aa82b145ad1396cb7f4,2026-09-16
 01_Datos/DNP/Desempeno_Municipal_MDM/MDM_ORIGINAL.xlsx,MDM_ORIGINAL.xlsx,A,4773136,2df6b55a20b550adadd7e9701d1ffd2e,2026-09-16
 01_Datos/DNP/Mapa_Inversiones/mapainversiones.dnp.gov.co.har,mapainversiones.dnp.gov.co.har,B,19997488,d181bfce4fb701560bb60ec41d946f5f,2026-09-16
@@ -35,6 +38,7 @@ ruta,archivo,categoria,bytes,md5,fecha_ingreso
 01_Datos/Gobernacion_Antioquia/Encuesta_Calidad_de_Vida/MICRODATOS ECV 2023_DICCIONARIO.xlsx,MICRODATOS ECV 2023_DICCIONARIO.xlsx,A,492245,5bfcb4c64619c5b2c906bdc57d926610,2026-09-16
 01_Datos/Gobernacion_Antioquia/Encuesta_Calidad_de_Vida/MICRODATOS ECV 2023_DICCIONARIO_RES.xlsx,MICRODATOS ECV 2023_DICCIONARIO_RES.xlsx,A,82734,77efd44ef8b383b14385c32e8aa67291,2026-09-16
 01_Datos/Gobernacion_Antioquia/Encuesta_Percepcion_Seguridad/Diccionario de datos 033200250000 percepcion de seguridad_2025 (1).xlsx,Diccionario de datos 033200250000 percepcion de seguridad_2025 (1).xlsx,A,1056244,64d3b2ac361239545b1e972d8c240bfe,2026-09-16
+01_Datos/Gobernacion_Antioquia/Encuesta_Percepcion_Seguridad/encuesta_percepcion_2018-2025_anonimizada.parquet,encuesta_percepcion_2018-2025_anonimizada.parquet,E,5860770,61435cc1aaf678aab958606039980d3a,2026-09-17
 01_Datos/Gobernacion_Antioquia/POTA/Tablas_municipales_octubre/GRUPO_1/05021_conflictos_alejandria.xlsx,05021_conflictos_alejandria.xlsx,A,191761,0aa767aec124fa9d06fe1b0dba4cd996,2026-09-16
 01_Datos/Gobernacion_Antioquia/POTA/Tablas_municipales_octubre/GRUPO_1/05036_conflictos_angelopolis.xlsx,05036_conflictos_angelopolis.xlsx,A,225232,8e243db18446dce9b04d5dba2090b260,2026-09-16
 01_Datos/Gobernacion_Antioquia/POTA/Tablas_municipales_octubre/GRUPO_1/05040_conflictos_anori.xlsx,05040_conflictos_anori.xlsx,A,618038,ce17a2ad352a135b484bbc91ac677eb8,2026-09-16
@@ -155,6 +159,7 @@ ruta,archivo,categoria,bytes,md5,fecha_ingreso
 01_Datos/MEN/SNIES tasas.xlsx,SNIES tasas.xlsx,A,712940,3e297b94bbe4f9545fa0e57de449c253,2026-09-16
 01_Datos/Migracion_Colombia_SITA/SITA_BD (VENR) - Actualizado Enero 2026.xlsx,SITA_BD (VENR) - Actualizado Enero 2026.xlsx,A,40702308,01fcb4536376ae85ccb8f4d5c12306ed,2026-09-16
 01_Datos/Migracion_Colombia_SITA/Turismo.xlsx,Turismo.xlsx,B,40748424,5f386774ccd6662d201b88d04fdb0dd8,2026-09-16
+01_Datos/MinTIC/EMPAQUETAMIENTO_FIJO_3.parquet,EMPAQUETAMIENTO_FIJO_3.parquet,D,41622928,a640974d4b44d97085bd7ef50f4717ef,2026-09-17
 01_Datos/Parques_Nacionales_RUNAP/AREAPROTEGIDA_ORIGINAL.xlsx,AREAPROTEGIDA_ORIGINAL.xlsx,B,37817,af661b2ce63b31f44238434f8d6b4ab4,2026-09-16
 01_Datos/Policia_Nacional/CUADRO_DE_SALIDA_DELICTIVO_HISTÓRICO_2020_2025.xlsx,CUADRO_DE_SALIDA_DELICTIVO_HISTÓRICO_2020_2025.xlsx,A,3979174,31617a083ff8e1011b5e88c16342ab7b,2026-09-16
 01_Datos/Superintendencia_Subsidio_Familiar/AFILIADOS CAJAS POR MCPIO.xlsx,AFILIADOS CAJAS POR MCPIO.xlsx,A,222245,46d1032cdc3ae3d870339d9fa79df00e,2026-09-16

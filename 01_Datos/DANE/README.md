@@ -2,7 +2,7 @@
 
 Originales cuya fuente es: Departamento Administrativo Nacional de Estadística (DANE).
 
-**13 archivos** en 6 subcarpetas.
+**16 archivos versionados** en 6 subcarpetas, más 1 original pesado sin versionar.
 
 | Subcarpeta | Contenido | Archivos |
 |---|---|---|

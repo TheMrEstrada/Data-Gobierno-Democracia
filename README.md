@@ -7,9 +7,10 @@ Repositorio de **datos originales** de fuentes oficiales sobre los municipios de
 | Elemento | Qué es |
 |---|---|
 | `00_Documentacion/` | Anexo metodológico: criterios de admisión, protocolos y papel de personas y agentes de IA |
-| `01_Datos/` | 172 archivos originales en carpetas por entidad fuente |
+| `01_Datos/` | 177 archivos versionados en carpetas por entidad fuente, más 3 originales pesados que quedan solo en el disco |
 | `registro_fuentes_variables.xlsx` | Registro de fuentes y variables: qué es cada archivo, su procedencia, las variables que contiene, brechas y pendientes |
-| `manifiesto_integridad.csv` | Ruta, peso y MD5 de cada archivo de `01_Datos/`, para verificar que están todos y que ninguno cambió |
+| `verificar_integridad.py` | Script que comprueba el manifiesto: recalcula los MD5 y avisa de cambios, pérdidas e ingresos no registrados |
+| `manifiesto_integridad.csv` | Ruta, peso y MD5 de cada archivo versionado de `01_Datos/`, para verificar que están todos y que ninguno cambió |
 
 ## Cómo usarlo
 
@@ -17,9 +18,17 @@ Repositorio de **datos originales** de fuentes oficiales sobre los municipios de
 2. Abre el archivo en `01_Datos/`, sin modificarlo. Si necesitas transformarlo, hazlo en tu propio proyecto.
 3. Antes de citar una cifra, revisa en el registro la fecha de corte y el nivel de procedencia del archivo.
 
+Para comprobar que tu copia está completa e intacta, ejecuta desde la raíz:
+
+```
+python verificar_integridad.py
+```
+
 ## Reglas básicas
 
 - Solo entran originales (categorías A y B). Nada limpiado, recortado ni calculado.
+- Los originales de más de 100 MB no se versionan: quedan en el disco y el repositorio guarda su conversión a parquet (categoría D, anexo sección 10).
+- Un original con identificadores directos de personas tampoco se versiona: el repositorio guarda su versión anonimizada (categoría E, anexo sección 10.4).
 - Los archivos no se editan, no se renombran ni se sobrescriben.
 - Todo archivo nuevo o actualizado pasa por el ciclo de ingreso del anexo y queda en el registro y el manifiesto.
 - Los archivos `README.md` son solo documentación: no son datos, no están en el registro ni en el manifiesto.
@@ -27,4 +36,4 @@ Repositorio de **datos originales** de fuentes oficiales sobre los municipios de
 
 ## Estado
 
-Borrador inicial (septiembre de 2026). La procedencia de los archivos está en investigación, hay 15 brechas abiertas, la tabla maestra territorial está por construir (90 municipios con esquema asociativo) y tres originales de más de 100 MB esperan decisión sobre su almacenamiento. El detalle está en la sección "Estado actual y limitaciones" del anexo y en las hojas Brechas y Pendientes del registro. Su gestión corresponde al equipo.
+Borrador inicial (septiembre de 2026). La procedencia de los archivos está en investigación, hay 15 brechas abiertas, la tabla maestra territorial está por construir (90 municipios con esquema asociativo) y de los tres originales de más de 100 MB dos ya tienen su conversión a parquet en el repositorio. El detalle está en la sección "Estado actual y limitaciones" del anexo y en las hojas Brechas y Pendientes del registro. Su gestión corresponde al equipo.

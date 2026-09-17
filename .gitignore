@@ -4,3 +4,9 @@
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Originales pesados (>100 MB): viven en la carpeta de su entidad, pero no se versionan.
+# En el repositorio se versiona su conversion a parquet (ver anexo, seccion de archivos pesados).
+01_Datos/MinTIC/EMPAQUETAMIENTO_FIJO_3.csv
+01_Datos/DANE/Proyecciones_Poblacion/PPED-AreaSexoEdadMun-2018-2042_VP.xlsx
+01_Datos/Gobernacion_Antioquia/Encuesta_Percepcion_Seguridad/Data anonimizada encuesta percepcion 2018-2025.xlsx

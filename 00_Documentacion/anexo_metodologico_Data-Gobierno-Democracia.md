@@ -1,6 +1,6 @@
 # Anexo metodológico — Repositorio de datos originales Data-Gobierno-Democracia
 
-**Versión:** borrador 0.3 · **Fecha:** 2026-09-17 · **Estado:** en revisión
+**Versión:** borrador 0.7 · **Fecha:** 2026-09-17 · **Estado:** en revisión
 
 ---
 
@@ -50,7 +50,8 @@ El repositorio no depende de ese archivo de trabajo para operar. La procedencia 
 Data-Gobierno-Democracia/
 ├── registro_fuentes_variables.xlsx   (registro)
 ├── manifiesto_integridad.csv         (manifiesto)
-├── 00_Documentacion/        (este anexo y la bitácora)
+├── verificar_integridad.py           (verificación del manifiesto)
+├── 00_Documentacion/  (este anexo)
 └── 01_Datos/
     ├── DANE/
     │   ├── CNPV_2018/  Cuentas_Nacionales/  Deficit_Habitacional/
@@ -66,29 +67,33 @@ Data-Gobierno-Democracia/
     ├── INS/
     │   └── SIVICAP_IRCA/  SIVIGILA/
     ├── ANM/  Contraloria/  Funcion_Publica_FURAG/  Global_Forest_Watch/
-    ├── IDEAM/  MEN/  Migracion_Colombia_SITA/  Parques_Nacionales_RUNAP/
+    ├── IDEAM/  MEN/  Migracion_Colombia_SITA/  MinTIC/  Parques_Nacionales_RUNAP/
     ├── Policia_Nacional/  Superintendencia_Subsidio_Familiar/  UARIV/
     ├── UBPD/  UNGRD/  UNODC_SIMCI/  URT/  XM/
     ├── _Compilaciones_equipo/     (compilaciones de varias fuentes, B)
     └── _Entidad_por_confirmar/    (entidad no verificada)
 ```
 
-En la raíz solo están los dos archivos de control: el registro de fuentes y variables, y el manifiesto (sección 9). Los datos viven únicamente en `01_Datos/` y la documentación en `00_Documentacion/`.
+En la raíz solo están los archivos de control: el registro de fuentes y variables, el manifiesto y el script que lo verifica (sección 9). Los datos viven únicamente en `01_Datos/` y la documentación en `00_Documentacion/`.
 
 Las carpetas que empiezan por guion bajo son transitorias. Un archivo sale de ellas cuando se confirma su entidad o se consigue el original de cada parte.
+
+Los originales de más de 100 MB también viven en la carpeta de su entidad, pero no se versionan: están listados en `.gitignore` y lo que viaja al repositorio remoto es su conversión (sección 10).
 
 **Contenido al inicio:**
 
 | Entidad | Archivos | Entidad | Archivos |
 |---|---|---|---|
 | Gobernación de Antioquia | 120 | Migración Colombia (SITA) | 2 |
-| DANE | 13 | Función Pública (FURAG) | 2 |
+| DANE | 16 | Función Pública (FURAG) | 2 |
 | INS | 7 | MEN | 2 |
-| DNP | 6 | 11 entidades con 1 archivo cada una | 11 |
+| DNP | 6 | 12 entidades con 1 archivo cada una | 12 |
 | UARIV | 4 | Carpetas transitorias | 2 |
-| UNGRD | 3 | **Total** | **172** |
+| UNGRD | 3 | **Total versionado** | **176** |
 
-De los 120 archivos de la Gobernación, 91 son las tablas municipales POTA.
+De los 120 archivos de la Gobernación, 91 son las tablas municipales POTA. Los 16 del DANE incluyen las tres hojas de las proyecciones por edad simple convertidas a parquet.
+
+Además hay **3 originales pesados** en el disco que no se versionan (sección 10).
 
 ## 6. Criterios de admisión
 
@@ -97,6 +102,8 @@ De los 120 archivos de la Gobernación, 91 son las tablas municipales POTA.
 | **A. Original** | Archivo tal como lo entregó o publicó la entidad. | Sí |
 | **B. Original de captura o compilación** | No es la descarga directa, pero no transforma valores. Incluye: copia manual de tablas web, reconstrucción desde una captura de navegador, compilación de cuadros de varias fuentes o columnas añadidas por el equipo sin cambiar los datos. | Sí, con nota que explique qué lo hace B |
 | **C. Tratado** | Tiene limpieza, filtro, recorte, cálculo, cruce, agregación o formato hechos por el equipo; o es un extracto o duplicado de un original que ya está. | No |
+| **D. Conversión de formato** | Excepción única para un original de más de 100 MB, que no cabe en el repositorio remoto: el mismo contenido en parquet, sin cambiar valores, con el MD5 del original y la referencia de la conversión. | Sí, bajo el protocolo de la sección 10 |
+| **E. Original anonimizado** | Excepción para un original que contiene identificadores directos de personas: el mismo archivo sin esos campos. Solo se admite cuando el original no puede circular tal como está. | Sí, bajo el protocolo de la sección 10.5 |
 
 **Reglas que no admiten excepción:**
 
@@ -104,6 +111,8 @@ De los 120 archivos de la Gobernación, 91 son las tablas municipales POTA.
 - Si existen a la vez un extracto y su original completo, entra solo el original.
 - Un archivo C solo reemplaza a un original ausente como excepción aprobada por una persona, y queda registrado como brecha abierta.
 - Los archivos B se revisan periódicamente para sustituirlos por la descarga directa cuando esté disponible.
+- La categoría D solo se usa por peso. Si un original cabe en el repositorio, entra tal cual: no se convierte "para que pese menos".
+- La categoría E solo se usa por protección de datos, y cada uso lo aprueba una persona. El original con identificadores nunca se versiona ni se publica.
 
 **Casos B al inicio (22):**
 
@@ -178,8 +187,8 @@ El nombre del esquema 5 aparece en varias fuentes como «POVINCIA DEL AGUA, BOSQ
 
 ## 9. Integridad y trazabilidad
 
-- **Manifiesto** (`manifiesto_integridad.csv`, en la raíz): una fila por cada archivo de `01_Datos/`, con ruta, nombre, categoría, peso en bytes, MD5 y fecha de ingreso. Solo describe el contenido de este repositorio y se genera recorriendo `01_Datos/`. El registro dice qué es cada archivo; el manifiesto permite comprobar con un script que están todos y que no cambiaron.
-- **Verificación:** se recalcula el MD5 de cada archivo y se compara con el manifiesto antes de cada publicación y después de cualquier movimiento de carpetas. Hay tres resultados posibles:
+- **Manifiesto** (`manifiesto_integridad.csv`, en la raíz): una fila por cada archivo versionado de `01_Datos/` (los originales pesados no versionados quedan fuera, con su MD5 en el registro), con ruta, nombre, categoría, peso en bytes, MD5 y fecha de ingreso. Solo describe el contenido de este repositorio y se genera recorriendo `01_Datos/`. El registro dice qué es cada archivo; el manifiesto permite comprobar con un script que están todos y que no cambiaron.
+- **Verificación:** se ejecuta `python verificar_integridad.py` desde la raíz del repositorio, antes de cada publicación y después de cualquier movimiento de carpetas. El script recalcula el MD5 de cada archivo, lo compara con el manifiesto y termina con código 1 si algo no cuadra. Hay tres resultados posibles:
   - un archivo que no coincide es un cambio no registrado;
   - un archivo sin fila es un ingreso no registrado;
   - una fila sin archivo es una pérdida.
@@ -188,15 +197,89 @@ El nombre del esquema 5 aparece en varias fuentes como «POVINCIA DEL AGUA, BOSQ
 
 ## 10. Archivos pesados, registros individuales y acceso
 
-**Archivos pesados.** Tres originales superan los 100 MB por archivo que admite GitHub:
+### 10.1 Regla
 
-- líneas de internet fijo de MinTIC (753 MB);
-- proyecciones de población DANE por edad simple (132 MB);
-- encuesta de percepción de seguridad (105 MB).
+El repositorio remoto no admite archivos de más de 100 MB. Para ellos rige esta excepción:
 
-**Decisión por tomar:** almacenamiento externo con referencia en el registro, Git LFS u otra opción. Mientras tanto están registrados, pero no copiados.
+- el **original se queda en la carpeta de su entidad**, en el disco, y se lista en `.gitignore`: nunca se sube ni se borra;
+- el repositorio versiona su **conversión a parquet**, registrada como categoría D;
+- el registro conserva las dos filas: la del original (con su MD5, su peso y la marca de no versionado) y la del parquet;
+- el **manifiesto solo cubre los archivos versionados**, porque sirve para comprobar que un clon está completo. La integridad del original se comprueba con el MD5 que guarda el registro;
+- el equipo mantiene además una **copia de respaldo del original** fuera del computador de trabajo.
 
-**Registros individuales.** Algunos archivos contienen un registro por persona, caso, titular o predio, aunque estén anonimizados:
+**Lo que la conversión no es.** Un parquet no reproduce el archivo original byte a byte: al convertir se decide dónde empieza el encabezado, cómo se nombran las columnas y qué tipo tiene cada una. Revertirlo devuelve una tabla equivalente, no el archivo de la entidad. Por eso el original nunca se borra y el MD5 que vale como huella del dato original es el suyo.
+
+**Qué se documenta en cada conversión:** archivo de origen y su MD5, hoja convertida, filas y columnas resultantes, qué se omitió (portadas, filas vacías), herramienta y fecha. Los parquet de este repositorio llevan esos datos dentro del propio archivo, en sus metadatos.
+
+**Verificación antes de aceptar una conversión:** mismo número de filas útiles y de columnas, y coincidencia de una suma de control (por ejemplo, el total de una columna numérica) entre el original y el parquet.
+
+### 10.2 Cómo convertir y revertir en R
+
+```r
+# install.packages(c("arrow", "readr", "readxl", "writexl", "dplyr"))
+library(arrow)
+
+# --- CSV grande a parquet -------------------------------------------------
+datos <- readr::read_delim("EMPAQUETAMIENTO_FIJO_3.csv", delim = ";",
+                           locale = readr::locale(encoding = "UTF-8"))
+write_parquet(datos, "EMPAQUETAMIENTO_FIJO_3.parquet",
+              compression = "zstd", compression_level = 9)
+
+# --- Hoja de Excel a parquet (skip salta la portada del cuadro) -----------
+hoja <- readxl::read_excel("PPED-AreaSexoEdadMun-2018-2042_VP.xlsx",
+                           sheet = "PobMunicipalxÁreaSexoEdad", skip = 6)
+write_parquet(hoja, "PPED-AreaSexoEdadMun-2018-2042_VP__PobMunicipalxAreaSexoEdad.parquet",
+              compression = "zstd", compression_level = 9)
+
+# --- Leer -----------------------------------------------------------------
+datos <- read_parquet("EMPAQUETAMIENTO_FIJO_3.parquet")            # todo a memoria
+read_parquet("EMPAQUETAMIENTO_FIJO_3.parquet",                     # solo unas columnas
+             col_select = c(ANNO, MUNICIPIO, CANTIDAD_LINEAS_ACCESOS))
+
+open_dataset("EMPAQUETAMIENTO_FIJO_3.parquet") |>                  # filtrar sin cargarlo entero
+  dplyr::filter(ID_DEPARTAMENTO == 5) |>
+  dplyr::collect()
+
+# --- Volver al formato de origen ------------------------------------------
+readr::write_delim(datos, "EMPAQUETAMIENTO_FIJO_3.csv", delim = ";", na = "")
+writexl::write_xlsx(hoja, "PPED-AreaSexoEdadMun-2018-2042_VP.xlsx")
+
+# --- Ver de qué original salió un parquet ---------------------------------
+open_dataset("EMPAQUETAMIENTO_FIJO_3.parquet")$schema$metadata
+```
+
+**Dos advertencias sobre este código:**
+
+- `skip = 6` deja solo el segundo nivel del encabezado. El parquet que está en el repositorio combinó los dos niveles como `"GRUPO - subcolumna"`, así que sus nombres de columna no son los que devuelve esa línea.
+- `write_delim` y `write_xlsx` escriben un archivo nuevo: no sobrescriba con ellos el original. Compruebe siempre contra el MD5 del registro.
+
+### 10.3 Estado actual
+
+| Original | Peso | Qué se versiona |
+|---|---|---|
+| `EMPAQUETAMIENTO_FIJO_3.csv` (MinTIC) | 718 MiB | 1 parquet, 39,7 MiB (3.572.367 filas × 22 columnas) |
+| `PPED-AreaSexoEdadMun-2018-2042_VP.xlsx` (DANE) | 126 MiB | 3 parquet, 30,1 MiB (hoja de datos: 84.229 filas × 312 columnas; portada y notas) |
+| `Data anonimizada encuesta percepcion 2018-2025.xlsx` (Gobernación) | 100 MiB | 1 parquet anonimizado, 5.59 MiB (23.216 filas × 1.356 columnas), categoría E |
+
+### 10.4 Anonimización (categoría E)
+
+Cuando un original trae identificadores directos de personas, el repositorio versiona una versión anonimizada y el original se queda en el disco, listado en `.gitignore`.
+
+**Reglas:**
+
+- se suprimen los **identificadores directos**: nombre, firma, documento, teléfono, correo y dirección, tanto en columnas propias como dentro de respuestas abiertas;
+- se suprime también la **geografía que ubica la vivienda** cuando es tan fina que señala a pocas personas, como el barrio o la vereda escritos en texto libre;
+- el alcance de la anonimización lo decide una persona y queda escrito: qué se suprimió, qué se conservó y por qué;
+- el **código que produjo el archivo** se publica completo en el README de la carpeta, tal como se ejecutó;
+- el parquet guarda en sus metadatos el archivo de origen, su MD5, las columnas suprimidas y el alcance;
+- se verifica que ninguna columna suprimida sobreviva y que no queden correos, teléfonos ni documentos en el texto libre;
+- **anonimizar no es garantizar el anonimato.** Si se conservan geografía fina, edad exacta u otras variables que combinadas identifican a alguien, el riesgo residual se declara en el README y queda como pendiente con responsable.
+
+Hoy la categoría E se usa en un solo archivo: la encuesta de percepción de seguridad 2018-2025 (ver el README de su carpeta).
+
+### 10.5 Registros individuales
+
+Algunos archivos contienen un registro por persona, caso, titular o predio:
 
 - encuesta de percepción;
 - casos SIVIGILA de intento de suicidio;
@@ -204,6 +287,8 @@ El nombre del esquema 5 aparece en varias fuentes como «POVINCIA DEL AGUA, BOSQ
 - tablas POTA por predio.
 
 Por decisión institucional todo el repositorio es accesible al equipo. La marca en el registro existe para que quien use esos archivos no publique resultados que permitan identificar a alguien, y para revisar esa decisión si el acceso se amplía.
+
+**Caso resuelto a medias (pendiente P-18).** El archivo de la encuesta de percepción se llamaba "anonimizada", pero conservaba 726 nombres de persona, 5.260 direcciones y el barrio del encuestado en los 23.216 registros. El repositorio versiona ahora una versión sin esos campos (categoría E) y el original se queda en el disco. Sigue abierto evaluar el riesgo residual: el código de manzana del marco muestral, el estrato, el sexo y la edad exacta se conservaron por decisión del equipo.
 
 ## 11. Personas y agentes de IA
 
@@ -356,7 +441,8 @@ Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nue
 
 ## 17. Estado actual y limitaciones
 
-- **Tres originales pesados** están registrados, pero no copiados (sección 10).
+- **Tres originales pesados** están en el disco pero no se versionan. Dos ya tienen su conversión a parquet en el repositorio; el de la encuesta de percepción no se convirtió (sección 10).
+- **La encuesta de percepción** entró anonimizada en sus identificadores directos y en el barrio del encuestado; conserva manzana del marco muestral, estrato, sexo y edad exacta, con riesgo residual de reidentificación (pendiente P-18).
 - **La tabla maestra territorial está por construir**, con la conformación ya definida (sección 8).
 - **Hay 15 brechas abiertas**, siete de prioridad alta (sección 14).
 - **Registro de variables (320, nivel municipal):**
@@ -386,6 +472,10 @@ La gestión de estos pendientes corresponde al equipo; el detalle está en las h
 | 0.1 | 2026-09-16 | Borrador inicial | Pendiente |
 | 0.2 | 2026-09-17 | Estructura 00_Documentacion/01_Datos; manifiesto de integridad propio del repositorio; protocolo de investigación de procedencia | Pendiente |
 | 0.3 | 2026-09-17 | Desvinculación del archivo de trabajo de origen; registro renombrado a `registro_fuentes_variables.xlsx`; tabla maestra con conformación definida (90 municipios con esquema asociativo); variables restringidas al nivel municipal | Pendiente |
+| 0.4 | 2026-09-17 | Categoría D y protocolo de archivos pesados (conversión a parquet, con código en R); hallazgo de identificadores en la encuesta de percepción | Pendiente |
+| 0.5 | 2026-09-17 | Categoría E y protocolo de anonimización; encuesta de percepción anonimizada y versionada en parquet | Pendiente |
+| 0.6 | 2026-09-17 | La anonimización suprime también la geografía fina en texto libre: se retiró `BARRIOENC` de la encuesta de percepción | Pendiente |
+| 0.7 | 2026-09-17 | Script `verificar_integridad.py` para comprobar el manifiesto; el `.docx` y su procedimiento de generación quedan descritos en `00_Documentacion/README.md` | Pendiente |
 
 Este anexo se actualiza en tres casos:
 

@@ -1,9 +1,11 @@
 # Los datos originales se guardan byte a byte: sin conversion de saltos de linea ni diffs de texto.
 01_Datos/** -text -diff
-**/README.md text
+**/README.md text diff
 # El manifiesto debe conservar sus bytes para que la verificacion MD5 sea reproducible.
 manifiesto_integridad.csv -text
 *.xlsx binary
 *.xlsm binary
 *.xls binary
 *.docx binary
+# El script de verificacion es texto normal.
+verificar_integridad.py text diff
