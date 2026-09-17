@@ -7,7 +7,7 @@ Originales de la fuente Gobernación de Antioquia. Producto: Encuesta de Calidad
 | Archivo | Cat. | Contenido |
 |---|---|---|
 | `INDICADORES ECV 2023 MUNICIPIOS.xlsx` | A | Indicadores municipales ECV 2023 (formato largo por hoja). |
-| `Indicadores_ECV2023.xlsx` | A | Indicadores oficiales ECV 2023 con agregados de subregión, departamento y provincias. |
+| `Indicadores_ECV2023.xlsx` | A | Indicadores oficiales ECV 2023 con agregados oficiales de subregión, departamento y provincias administrativas y de planificación. |
 | `MICRODATOS ECV 2023_DICCIONARIO.xlsx` | A | Diccionario de datos de los microdatos ECV 2023 (el archivo de microdatos no está en la carpeta). |
 | `MICRODATOS ECV 2023_DICCIONARIO_RES.xlsx` | A | Diccionario resumido de los microdatos ECV 2023. |
 

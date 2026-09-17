@@ -6,9 +6,9 @@ Originales cuya fuente es: Unidad para la Atención y Reparación Integral a las
 
 | Archivo | Cat. | Contenido |
 |---|---|---|
-| `IRV-2025.xlsx` | A | Índice de Riesgo de Victimización 2025 (UARIV), copia en Actualización/Fuentes (distinta de la de 00_Inputs: ver md5). |
+| `IRV-2025.xlsx` | A | Índice de Riesgo de Victimización 2025 (UARIV): índice y categoría por municipio, a nivel nacional. |
 | `UARIV_sujetos_reparacion_colectiva.xlsx` | B | Sujetos de reparación colectiva (UARIV, nacional). |
-| `cifras_victimas_ruv.xlsx` | B | Reemplaza a HECHOSVICTIM_PROVINCIAS para hechos victimizantes (10.4): 125 municipios, totales deduplicados (municipal y oficial de departamento). |
+| `cifras_victimas_ruv.xlsx` | B | Hechos victimizantes por municipio (RUV): 125 municipios de Antioquia, totales deduplicados municipales y total oficial departamental. |
 | `vgv.unidadvictimas.gov.co.har` | B | Captura de navegador (.har) del visor de sujetos de reparación colectiva de la UARIV; de ella se reconstruyó UARIV_sujetos_reparacion_colectiva.xlsx. |
 
 ---

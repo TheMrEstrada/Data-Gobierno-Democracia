@@ -1,6 +1,6 @@
 # Data-Gobierno-Democracia
 
-Repositorio de **datos originales** que sustentaron el diagnóstico de los Planes Estratégicos Provinciales de Antioquia (Proyecto Provincias). Cada archivo está tal como lo entregó su fuente, identificado por su huella MD5 y descrito en un registro. Aquí no se limpian ni se calculan datos: eso ocurre en los proyectos que leen este repositorio.
+Repositorio de **datos originales** de fuentes oficiales sobre los municipios de Antioquia. Cada archivo está tal como lo entregó su fuente, identificado por su huella MD5 y descrito en un registro. Aquí no se limpian ni se calculan datos: eso ocurre en los proyectos que leen este repositorio.
 
 ## Contenido
 
@@ -8,7 +8,7 @@ Repositorio de **datos originales** que sustentaron el diagnóstico de los Plane
 |---|---|
 | `00_Documentacion/` | Anexo metodológico: criterios de admisión, protocolos y papel de personas y agentes de IA |
 | `01_Datos/` | 172 archivos originales en carpetas por entidad fuente |
-| `Sistematización fuentes originales - Proyecto Provincias - v4.xlsx` | Registro de fuentes y variables: qué es cada archivo, su procedencia, las variables que contiene, brechas y pendientes |
+| `registro_fuentes_variables.xlsx` | Registro de fuentes y variables: qué es cada archivo, su procedencia, las variables que contiene, brechas y pendientes |
 | `manifiesto_integridad.csv` | Ruta, peso y MD5 de cada archivo de `01_Datos/`, para verificar que están todos y que ninguno cambió |
 
 ## Cómo usarlo
@@ -27,4 +27,4 @@ Repositorio de **datos originales** que sustentaron el diagnóstico de los Plane
 
 ## Estado
 
-Borrador inicial (septiembre de 2026). La procedencia de los archivos está en investigación, hay 15 brechas abiertas, la tabla maestra territorial está por construir y tres originales de más de 100 MB esperan decisión sobre su almacenamiento. El detalle está en la sección "Estado actual y limitaciones" del anexo.
+Borrador inicial (septiembre de 2026). La procedencia de los archivos está en investigación, hay 15 brechas abiertas, la tabla maestra territorial está por construir (90 municipios con esquema asociativo) y tres originales de más de 100 MB esperan decisión sobre su almacenamiento. El detalle está en la sección "Estado actual y limitaciones" del anexo y en las hojas Brechas y Pendientes del registro. Su gestión corresponde al equipo.

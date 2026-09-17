@@ -1,12 +1,12 @@
 # Anexo metodológico — Repositorio de datos originales Data-Gobierno-Democracia
 
-**Versión:** borrador 0.2 · **Fecha:** 2026-09-17 · **Estado:** en revisión
+**Versión:** borrador 0.3 · **Fecha:** 2026-09-17 · **Estado:** en revisión
 
 ---
 
 ## 1. Propósito y alcance
 
-Este repositorio reúne, en un solo lugar y con registro verificable, **los datos originales** que sustentaron el diagnóstico del Proyecto Provincias (Planes Estratégicos Provinciales de Antioquia). Cada archivo está como lo entregó su fuente, identificado por su huella digital y documentado con su origen.
+Este repositorio reúne, en un solo lugar y con registro verificable, **datos originales** de fuentes oficiales sobre los municipios de Antioquia. Cada archivo está como lo entregó su fuente, identificado por su huella digital y documentado con su origen.
 
 El documento está escrito para tres lectores:
 
@@ -29,48 +29,11 @@ El documento está escrito para tres lectores:
 
 ## 3. Origen del repositorio
 
-El repositorio nació el 2026-09-16 de una migración desde la carpeta local `Proyecto-Provincias v2`, que era la versión más completa del proyecto. La carpeta de origen no se modificó.
+Los archivos se incorporaron el 2026-09-16 desde un archivo de trabajo previo del equipo. Cada uno se revisó por contenido (cobertura municipal detectada, hojas, columnas agregadas por el equipo y comparación entre archivos parecidos) y se clasificó con los criterios de la sección 6.
 
-**Qué se hizo:** se inventariaron los 249 archivos de datos de `01_Data` (sin contar los README). Cada uno se revisó por contenido:
+**Resultado:** entraron 172 originales (A y B). Tres originales de más de 100 MB quedaron registrados sin copiar (sección 10) y la tabla maestra territorial quedó por construir (sección 8). Los archivos tratados no se incorporaron.
 
-- cobertura municipal detectada;
-- hojas;
-- columnas agregadas por el equipo;
-- comparación celda a celda entre archivos parecidos.
-
-Con esa revisión cada archivo quedó en una de tres categorías (sección 6).
-
-**Resultado:**
-
-| Concepto | Archivos |
-|---|---|
-| Revisados | 249 |
-| Originales que migran (A: 153 · B: 22) | 175 |
-| Copiados, con MD5 verificado | 172 |
-| Pendientes por peso (más de 100 MB) | 3 |
-| Excluidos por ser tratados (C) | 74 |
-| Base nueva por construir: tabla maestra territorial | 1 |
-
-**Por qué se excluyó cada grupo:**
-
-| Tipo de archivo excluido | Archivos | Qué los reemplaza |
-|---|---|---|
-| Recortes con "PROVINCIAS" en el nombre | 16 | Su original, cuando existe; si no, una brecha |
-| Derivados del procesamiento (Parquet) | 23 | Los originales que leía cada script |
-| Tableros curados a mano | 10 | Su original, cuando existe; si no, una brecha |
-| Listados territoriales parciales | 6 | La tabla maestra territorial |
-| Cartografía adaptada | 8 | Marco Geoestadístico DANE (solo Antioquia) |
-| Extractos o compilados de un original presente | 7 | El original completo, que sí migra |
-| Duplicados exactos | 2 | La copia que migra |
-| Documentos de trabajo del equipo | 2 | El registro de fuentes y variables |
-
-Tres referencias que no son datos del repositorio siguen siendo útiles:
-
-- `INVENTARIO_VARIABLES_v_2.xlsx` trae fuente, periodo y periodicidad por indicador, y sirve para completar metadatos.
-- Los scripts de homogeneización del proyecto anterior muestran de qué hoja y columna salía cada variable.
-- La descripción de archivos que el equipo había hecho en el proyecto anterior, incorporada al registro como punto de partida.
-
-El repositorio no depende de ese proyecto para operar. La procedencia de cada archivo se establece con el protocolo de la sección 13, no con la ubicación que tuvo antes.
+El repositorio no depende de ese archivo de trabajo para operar. La procedencia de cada archivo se establece con el protocolo de la sección 13, no con la ubicación que tuvo antes.
 
 ## 4. Convenciones
 
@@ -85,8 +48,8 @@ El repositorio no depende de ese proyecto para operar. La procedencia de cada ar
 
 ```
 Data-Gobierno-Democracia/
-├── Sistematización fuentes originales - Proyecto Provincias - v4.xlsx   (registro)
-├── manifiesto_integridad.csv                                            (manifiesto)
+├── registro_fuentes_variables.xlsx   (registro)
+├── manifiesto_integridad.csv         (manifiesto)
 ├── 00_Documentacion/        (este anexo y la bitácora)
 └── 01_Datos/
     ├── DANE/
@@ -132,12 +95,12 @@ De los 120 archivos de la Gobernación, 91 son las tablas municipales POTA.
 | Categoría | Definición | ¿Entra? |
 |---|---|---|
 | **A. Original** | Archivo tal como lo entregó o publicó la entidad. | Sí |
-| **B. Original de captura o compilación** | No es la descarga directa, pero no transforma valores. Incluye: copia manual de tablas web, reconstrucción desde una captura de navegador, compilación de cuadros de varias fuentes o columnas del proyecto añadidas sin cambiar los datos. | Sí, con nota que explique qué lo hace B |
-| **C. Tratado** | Tiene limpieza, filtro, recorte, cálculo, cruce, agregación o formato del proyecto; o es un extracto o duplicado de un original que ya está. | No |
+| **B. Original de captura o compilación** | No es la descarga directa, pero no transforma valores. Incluye: copia manual de tablas web, reconstrucción desde una captura de navegador, compilación de cuadros de varias fuentes o columnas añadidas por el equipo sin cambiar los datos. | Sí, con nota que explique qué lo hace B |
+| **C. Tratado** | Tiene limpieza, filtro, recorte, cálculo, cruce, agregación o formato hechos por el equipo; o es un extracto o duplicado de un original que ya está. | No |
 
 **Reglas que no admiten excepción:**
 
-- Ningún archivo con "PROVINCIAS" en el nombre entra: son recortes hechos para el proyecto anterior.
+- No entran recortes hechos por el equipo a un subconjunto de municipios: se guarda el producto completo de la entidad.
 - Si existen a la vez un extracto y su original completo, entra solo el original.
 - Un archivo C solo reemplaza a un original ausente como excepción aprobada por una persona, y queda registrado como brecha abierta.
 - Los archivos B se revisan periódicamente para sustituirlos por la descarga directa cuando esté disponible.
@@ -157,17 +120,17 @@ De los 120 archivos de la Gobernación, 91 son las tablas municipales POTA.
 
 ## 7. Registro de fuentes y variables
 
-El registro es el libro de sistematización. Sus hojas cumplen las funciones que se describen abajo.
+El registro es el archivo `registro_fuentes_variables.xlsx`, en la raíz. Sus hojas cumplen las funciones que se describen abajo.
 
-**Fuentes.** Una fila por archivo del repositorio. Campos mínimos obligatorios:
+**Fuentes.** Una fila por archivo del repositorio, más los originales registrados que no están copiados y la tabla maestra por construir. Campos mínimos obligatorios:
 
 | Campo | Contenido |
 |---|---|
-| Nombre archivo, ruta | Identificación exacta en el repositorio |
+| Archivo, ruta y estado en el repositorio | Identificación exacta en el repositorio |
 | Categoría y nota | A o B; en B, qué lo hace B |
 | Entidad fuente | Quién produce el dato |
 | Acceso | URL con fecha de consulta, solicitud oficial o forma de obtención |
-| Fecha de corte y de descarga | Cuándo mide el dato y cuándo se obtuvo |
+| Fecha de corte y de consulta | Cuándo mide el dato y cuándo se obtuvo |
 | Cobertura | Territorial (nacional, Antioquia, parcial con número de municipios) y temporal |
 | Versión | Vigente, no vigente o por confirmar, cuando hay varias del mismo producto |
 | Formato, peso, MD5 | Para verificar integridad |
@@ -175,18 +138,19 @@ El registro es el libro de sistematización. Sus hojas cumplen las funciones que
 | Registros individuales | Sí/No: personas, casos, titulares o predios |
 | Responsable | Persona que responde por el archivo |
 
-**Variables.** Una fila por variable, con: identificador, definición, tipo y unidad de medida, disponibilidad temporal, archivo original, **hoja y campo dentro del original**, y estado de anclaje. Los estados posibles son:
+**Variables.** Una fila por variable de nivel municipal, con: identificador, definición, tipo y unidad de medida, disponibilidad temporal, archivo original y su ruta, **hoja y campo dentro del original**, y estado de anclaje. Los agregados por esquema asociativo, subregión o departamento no se registran: se calculan en los proyectos que leen el repositorio. Los estados de anclaje son:
 
-- **Directo:** el campo está identificado.
-- **Por confirmar:** se sabe el archivo, falta la hoja o la columna.
+- **Archivo y campo identificados.**
+- **Archivo identificado: campo por confirmar.**
 - **Brecha parcial:** el original disponible no cubre toda la variable.
 - **Brecha:** no hay original.
+- **Sin archivo:** la variable no tiene fuente asignada.
 
-**Excluidos.** Archivos que no entran, con su tipo de tratamiento y el original que los reemplaza.
+**Brechas y Pendientes.** Lo que falta resolver, con prioridad y acción requerida.
 
-**Brechas y Pendientes.** Lo que falta resolver, con prioridad y decisión requerida.
+**Leyenda.** Significado de cada columna y de sus valores.
 
-**Bitácora.** Un registro por cambio: fecha, qué cambió, valor anterior, valor nuevo, motivo, evidencia y quién aprobó.
+**Control (bitácora).** Un registro por cambio: fecha, qué cambió, motivo, evidencia y quién aprobó.
 
 ## 8. Tabla maestra territorial
 
@@ -198,20 +162,18 @@ Es la única base que el repositorio construye, y se trata como un original porq
 - nombre normalizado (mayúsculas, sin tildes, para cruces);
 - nombre de presentación;
 - subregión DANE;
-- esquema asociativo;
-- identificador de provincia.
+- esquema asociativo (vacío si el municipio no pertenece a uno);
+- identificador del esquema asociativo.
 
-**Estado: decisión por tomar.** Las fuentes que la componían no coinciden:
+**Conformación definida:** 90 de los 125 municipios pertenecen a un esquema asociativo. La conformación incluye Amalfi en Minero Agroecológica y Santa Fe de Antioquia en Turística y Agroecológica; los listados que asignaban 88 municipios no se usan.
 
-- Dos listados asignan provincia a 88 municipios.
-- Otro listado, y el derivado usado en el procesamiento, asignan 90: agregan Amalfi a la provincia Minero Agroecológica y Santa Fe de Antioquia a la Turística y Agroecológica.
-- Un tercer listado cubre solo 4 de las 11 provincias.
+**Estado: por construir.** Falta citar el acto o la fuente oficial de cada esquema asociativo.
 
-Además, el nombre de la provincia 5 aparece en varias fuentes como «POVINCIA DEL AGUA, BOSQUES Y TURISMO», con la errata. La tabla maestra usa la forma correcta y deja registrada la variante.
+El nombre del esquema 5 aparece en varias fuentes como «POVINCIA DEL AGUA, BOSQUES Y TURISMO», con la errata. La tabla maestra usa la forma correcta y deja registrada la variante.
 
 **Reglas:**
 
-- Solo una persona puede aprobar un cambio en la conformación de provincias.
+- Solo una persona puede aprobar un cambio en la conformación de los esquemas asociativos.
 - Cada cambio queda en la bitácora con su acto o fuente oficial.
 
 ## 9. Integridad y trazabilidad
@@ -347,7 +309,7 @@ Un **pendiente** es una decisión o dato faltante sobre algo que ya está en el 
 | B-03 | Explotación de oro de aluvión (EVOA) | Alta |
 | B-04 | Índice de Ciudades Modernas (ICM) | Alta |
 | B-08 | Red vial primaria, secundaria y terciaria (shapefiles) | Alta |
-| B-10 | Tablero de seguridad, salud y vivienda: fuente de cada uno de sus 33 indicadores | Alta |
+| B-10 | Indicadores de seguridad, salud y vivienda: fuente de cada uno de los 33 | Alta |
 | B-13 | Tabla maestra territorial (sección 8) | Alta |
 | B-05 | Hechos victimizantes (RUV) | Media |
 | B-06 | Índice de Desempeño Fiscal | Media |
@@ -395,18 +357,17 @@ Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nue
 ## 17. Estado actual y limitaciones
 
 - **Tres originales pesados** están registrados, pero no copiados (sección 10).
-- **La tabla maestra territorial está por construir** (sección 8).
+- **La tabla maestra territorial está por construir**, con la conformación ya definida (sección 8).
 - **Hay 15 brechas abiertas**, siete de prioridad alta (sección 14).
-- **Registro de variables:**
-  - 335 variables heredadas del proyecto anterior.
-  - En 24 están identificados la hoja y el campo en el original.
-  - En 229 el campo está por confirmar.
-  - 79 dependen de brechas: 48 sin original y 31 con un original parcial.
-  - 3 no tienen fuente.
-  - 5 filas no tienen identificador.
-- **Procedencia sin investigar:** los 172 archivos están en nivel "por confirmar". Su entidad se asignó por nombre y contenido durante la migración, sin contraste con las publicaciones oficiales.
+- **Registro de variables (320, nivel municipal):**
+  - en 24 están identificados la hoja y el campo en el original;
+  - en 219 el campo está por confirmar;
+  - 75 dependen de brechas: 45 sin original y 30 con un original parcial;
+  - 2 no tienen fuente;
+  - 4 filas no tienen identificador.
+- **Procedencia sin investigar:** los 172 archivos están en nivel "por confirmar". Su entidad se asignó por nombre y contenido al incorporarlos, sin contraste con las publicaciones oficiales.
 - **Metadatos incompletos:**
-  - la URL y la fecha de corte no están registradas para la mayoría de los archivos;
+  - la URL y la fecha de corte no están registradas;
   - 5 entidades están por confirmar;
   - 163 filas no tienen responsable.
 - **Versiones por confirmar:** el IRCA de Antioquia frente al histórico nacional, y dos ediciones de mortalidad infantil con las mismas hojas y valores distintos.
@@ -414,14 +375,17 @@ Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nue
 - **Vocabulario sin unificar:**
   - unidades con criterios distintos: porcentaje, fracción 0-1 y escala 0-100;
   - tipos de medida que se solapan: total, cantidad, conteo, numérico.
-- **Validación externa:** la única contrastada es la del proyecto anterior, que comparó una sola provincia contra su informe publicado. Los originales se verificaron por integridad y contenido, no contra las entidades.
+- **Validación externa:** los originales se verificaron por integridad y contenido, no contra las entidades.
+
+La gestión de estos pendientes corresponde al equipo; el detalle está en las hojas Brechas y Pendientes del registro.
 
 ## 18. Control del documento
 
 | Versión | Fecha | Cambio | Aprobó |
 |---|---|---|---|
-| 0.1 | 2026-09-16 | Borrador inicial tras la migración | Pendiente |
+| 0.1 | 2026-09-16 | Borrador inicial | Pendiente |
 | 0.2 | 2026-09-17 | Estructura 00_Documentacion/01_Datos; manifiesto de integridad propio del repositorio; protocolo de investigación de procedencia | Pendiente |
+| 0.3 | 2026-09-17 | Desvinculación del archivo de trabajo de origen; registro renombrado a `registro_fuentes_variables.xlsx`; tabla maestra con conformación definida (90 municipios con esquema asociativo); variables restringidas al nivel municipal | Pendiente |
 
 Este anexo se actualiza en tres casos:
 
