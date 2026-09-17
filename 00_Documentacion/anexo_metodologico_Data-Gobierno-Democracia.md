@@ -1,6 +1,6 @@
 # Anexo metodológico — Repositorio de datos originales Data-Gobierno-Democracia
 
-**Versión:** borrador 0.1 · **Fecha:** 2026-09-16 · **Estado:** en revisión
+**Versión:** borrador 0.2 · **Fecha:** 2026-09-17 · **Estado:** en revisión
 
 ---
 
@@ -68,7 +68,9 @@ Tres referencias que no son datos del repositorio siguen siendo útiles:
 
 - `INVENTARIO_VARIABLES_v_2.xlsx` trae fuente, periodo y periodicidad por indicador, y sirve para completar metadatos.
 - Los scripts de homogeneización del proyecto anterior muestran de qué hoja y columna salía cada variable.
-- El manifiesto de migración permite ubicar cualquier archivo entre la ruta anterior y la nueva.
+- La descripción de archivos que el equipo había hecho en el proyecto anterior, incorporada al registro como punto de partida.
+
+El repositorio no depende de ese proyecto para operar. La procedencia de cada archivo se establece con el protocolo de la sección 13, no con la ubicación que tuvo antes.
 
 ## 4. Convenciones
 
@@ -84,7 +86,7 @@ Tres referencias que no son datos del repositorio siguen siendo útiles:
 ```
 Data-Gobierno-Democracia/
 ├── Sistematización fuentes originales - Proyecto Provincias - v4.xlsx   (registro)
-├── manifiesto_migracion_originales_v4.csv                               (manifiesto)
+├── manifiesto_integridad.csv                                            (manifiesto)
 ├── 00_Documentacion/        (este anexo y la bitácora)
 └── 01_Datos/
     ├── DANE/
@@ -164,11 +166,12 @@ El registro es el libro de sistematización. Sus hojas cumplen las funciones que
 | Nombre archivo, ruta | Identificación exacta en el repositorio |
 | Categoría y nota | A o B; en B, qué lo hace B |
 | Entidad fuente | Quién produce el dato |
-| Acceso | URL, solicitud oficial o forma de obtención |
+| Acceso | URL con fecha de consulta, solicitud oficial o forma de obtención |
 | Fecha de corte y de descarga | Cuándo mide el dato y cuándo se obtuvo |
 | Cobertura | Territorial (nacional, Antioquia, parcial con número de municipios) y temporal |
 | Versión | Vigente, no vigente o por confirmar, cuando hay varias del mismo producto |
 | Formato, peso, MD5 | Para verificar integridad |
+| Procedencia | Nivel (verificada, documentada, por confirmar, desconocida), evidencia y condiciones de uso (sección 13) |
 | Registros individuales | Sí/No: personas, casos, titulares o predios |
 | Responsable | Persona que responde por el archivo |
 
@@ -213,12 +216,12 @@ Además, el nombre de la provincia 5 aparece en varias fuentes como «POVINCIA D
 
 ## 9. Integridad y trazabilidad
 
-- **Manifiesto** (`manifiesto_migracion_originales_v4.csv`, en la raíz): una fila por archivo original, con ruta en el proyecto anterior, nombre, categoría, peso en bytes, MD5, marca de pesado, versión, ruta en el repositorio y estado de migración. Es la referencia contra la que se verifica el repositorio. El registro de fuentes describe los archivos; el manifiesto permite comprobar con un script que están todos y que no cambiaron.
+- **Manifiesto** (`manifiesto_integridad.csv`, en la raíz): una fila por cada archivo de `01_Datos/`, con ruta, nombre, categoría, peso en bytes, MD5 y fecha de ingreso. Solo describe el contenido de este repositorio y se genera recorriendo `01_Datos/`. El registro dice qué es cada archivo; el manifiesto permite comprobar con un script que están todos y que no cambiaron.
 - **Verificación:** se recalcula el MD5 de cada archivo y se compara con el manifiesto antes de cada publicación y después de cualquier movimiento de carpetas. Hay tres resultados posibles:
   - un archivo que no coincide es un cambio no registrado;
   - un archivo sin fila es un ingreso no registrado;
   - una fila sin archivo es una pérdida.
-- **Trazabilidad hacia el proyecto anterior:** para los 172 archivos migrados, el manifiesto conserva la ruta en `Proyecto-Provincias v2`.
+- **Procedencia:** se documenta en el registro con el protocolo de la sección 13.
 - **Historial:** el control de versiones registra el cuándo; la bitácora registra el porqué y quién lo aprobó.
 
 ## 10. Archivos pesados, registros individuales y acceso
@@ -229,7 +232,7 @@ Además, el nombre de la provincia 5 aparece en varias fuentes como «POVINCIA D
 - proyecciones de población DANE por edad simple (132 MB);
 - encuesta de percepción de seguridad (105 MB).
 
-**Decisión por tomar:** almacenamiento externo con referencia en el manifiesto, Git LFS u otra opción. Mientras tanto están registrados, pero no copiados.
+**Decisión por tomar:** almacenamiento externo con referencia en el registro, Git LFS u otra opción. Mientras tanto están registrados, pero no copiados.
 
 **Registros individuales.** Algunos archivos contienen un registro por persona, caso, titular o predio, aunque estén anonimizados:
 
@@ -250,6 +253,7 @@ Un agente de IA puede hacer buena parte del trabajo operativo con rapidez y sin 
 | Leer hojas y encabezados; detectar cobertura, recortes y duplicados | Decidir exclusiones y excepciones a los criterios de admisión |
 | Proponer la categoría con su evidencia | Obtener originales: solicitudes a entidades, descargas con credenciales, acuerdos de uso |
 | Redactar descripciones y completar el registro con metadatos que estén en el archivo | Confirmar entidad, URL y fecha de corte cuando no constan en el archivo |
+| Investigar la procedencia: buscar la publicación oficial y contrastarla con el archivo | Aportar el conocimiento del equipo y asignar el nivel de procedencia |
 | Anclar variables a hoja y campo, citando la evidencia | Declarar qué versión es la vigente |
 | Generar y verificar el manifiesto; detectar inconsistencias | Aprobar cambios en la tabla maestra territorial |
 | Preparar la propuesta de cambio y la entrada de bitácora | Decidir sobre archivos pesados y registros individuales |
@@ -265,22 +269,58 @@ Un agente de IA puede hacer buena parte del trabajo operativo con rapidez y sin 
 
 ## 12. Ciclo común de ingreso
 
-Agregar un dato nuevo, actualizar uno existente y cerrar un pendiente siguen el mismo ciclo. Las secciones 13 a 15 describen solo lo que cambia en cada caso.
+Agregar un dato nuevo, actualizar uno existente, establecer la procedencia de un archivo y cerrar un pendiente siguen el mismo ciclo. Las secciones 13 a 16 describen solo lo que cambia en cada caso.
 
 | Paso | Qué se hace | Quién |
 |---|---|---|
-| 1. Obtención | Conseguir el archivo de la entidad y anotar acceso y fecha de descarga | Persona |
+| 1. Obtención | Conseguir el archivo de la entidad y anotar acceso y fecha de descarga | Persona (descargas públicas: agente, con aprobación) |
 | 2. Revisión | Leer contenido: hojas, cobertura, columnas agregadas, relación con archivos existentes | Agente o persona |
 | 3. Clasificación | Proponer A, B o C con evidencia | Agente o persona |
 | 4. Aprobación | Aceptar la clasificación; en B, validar la nota | Persona |
 | 5. Ubicación | Carpeta de la entidad, sin renombrar el archivo | Agente o persona |
-| 6. Registro | Fila en Fuentes, variables afectadas, MD5 en el manifiesto | Agente o persona |
+| 6. Registro | Fila en Fuentes con su nivel de procedencia, variables afectadas, fila en el manifiesto | Agente o persona |
 | 7. Verificación | Recalcular MD5 y comprobar que el registro y el repositorio coinciden | Agente o persona |
 | 8. Bitácora y publicación | Entrada con motivo y aprobador; publicación del cambio | Persona aprueba y publica |
 
 Un ingreso no está terminado hasta que pasa la verificación del paso 7.
 
-## 13. Protocolo de pendientes y brechas
+## 13. Protocolo de investigación de procedencia
+
+Saber de dónde viene cada archivo es el requisito más importante del repositorio: sin procedencia, un dato no se puede citar, actualizar ni defender. La procedencia no se hereda de la ubicación que tuvo un archivo en otro proyecto; se **investiga y documenta** en el registro. Es un trabajo conjunto: el agente de IA rastrea y contrasta, y la persona aporta lo que solo sabe el equipo y aprueba el resultado.
+
+**Qué se documenta por archivo:** entidad y producto (nombre oficial de la publicación o sistema), acceso (URL exacta con fecha de consulta, o solicitud oficial con su radicado), fecha de corte y fecha de obtención, cobertura, condiciones de uso y la evidencia que sustenta cada dato.
+
+**Niveles de procedencia:**
+
+| Nivel | Significa | Quién lo asigna |
+|---|---|---|
+| **Verificada** | La publicación oficial se localizó y se contrastó con el archivo: coinciden la estructura, el periodo y una muestra de valores, o la huella de la descarga es idéntica | Persona, con el contraste documentado |
+| **Documentada** | La fuente está identificada con evidencia (enlace oficial, radicado, correo de entrega), pero no se contrastaron los valores | Persona |
+| **Por confirmar** | Hay una hipótesis de fuente sin evidencia suficiente | Agente o persona |
+| **Desconocida** | Se investigó y no fue posible establecerla | Persona |
+
+**Pasos:**
+
+| Paso | Qué se hace | Quién |
+|---|---|---|
+| 1. Pistas internas | Leer lo que el propio archivo dice: hojas de índice o notas de "Fuente", encabezados institucionales, propiedades del documento, fechas y nombres de productos | Agente |
+| 2. Búsqueda | Localizar la publicación oficial candidata: portal, nombre del producto, URL, versión y fecha de publicación | Agente |
+| 3. Contraste | Si hay descarga pública, obtenerla fuera del repositorio y compararla con el archivo: estructura, periodo, muestra de valores, huella | Agente |
+| 4. Conocimiento del equipo | Aportar lo que no está en internet: quién consiguió el archivo, por qué canal, solicitudes, correos, acuerdos de uso | Persona |
+| 5. Decisión | Confirmar o descartar la hipótesis y asignar el nivel | Persona |
+| 6. Registro | Completar los campos de procedencia y la bitácora con la evidencia | Agente o persona |
+
+**Reglas:**
+
+- El agente no asigna el nivel "verificada" ni "documentada": los propone con su evidencia.
+- No se registra una URL que no se haya consultado; toda URL lleva su fecha de consulta.
+- Si la descarga oficial actual difiere del archivo del repositorio, **no lo reemplaza**: se registra como otra versión y se sigue el protocolo de actualización (sección 16).
+- Las fuentes que exigen credenciales, solicitudes formales o contacto con la entidad las gestiona una persona.
+- Un archivo con procedencia desconocida se conserva, con esa marca visible, hasta que se decida si se reemplaza, se mantiene como B o se retira.
+
+**Orden de trabajo:** primero los archivos que sostienen variables, luego los de carpetas transitorias y los de categoría B, y al final el resto.
+
+## 14. Protocolo de pendientes y brechas
 
 Un **pendiente** es una decisión o dato faltante sobre algo que ya está en el repositorio. Una **brecha** es un original que no está.
 
@@ -318,17 +358,17 @@ Un **pendiente** es una decisión o dato faltante sobre algo que ya está en el 
 | B-14 | Capa RUNAP de áreas protegidas | Baja |
 | B-15 | Marco Geoestadístico nacional | Baja |
 
-## 14. Protocolo para agregar datos nuevos
+## 15. Protocolo para agregar datos nuevos
 
 Además del ciclo común:
 
-1. **Antes de obtener el archivo,** comprobar en el registro que no exista ya el mismo producto. Si existe, es una actualización (sección 15), no un ingreso nuevo.
+1. **Antes de obtener el archivo,** comprobar en el registro que no exista ya el mismo producto. Si existe, es una actualización (sección 16), no un ingreso nuevo.
 2. **Preferir la fuente primaria.** Si hay descarga oficial, no se acepta una compilación.
 3. **Pedir el producto completo** que publica la entidad, no un filtro a Antioquia ni a un grupo de municipios. Si la entidad solo entrega el filtro, se registra como cobertura parcial.
 4. **Documentar las variables** que motivaron el ingreso, con hoja y campo en el original.
 5. **Entidad nueva:** se crea su carpeta. Si la entidad no está verificada, el archivo va a `_Entidad_por_confirmar/` y se abre un pendiente.
 
-## 15. Protocolo para actualizar datos existentes
+## 16. Protocolo para actualizar datos existentes
 
 Una actualización es un nuevo corte o una revisión de un producto que ya está en el repositorio.
 
@@ -352,11 +392,11 @@ Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nue
 - IRCA;
 - mortalidad infantil.
 
-## 16. Estado actual y limitaciones
+## 17. Estado actual y limitaciones
 
 - **Tres originales pesados** están registrados, pero no copiados (sección 10).
 - **La tabla maestra territorial está por construir** (sección 8).
-- **Hay 15 brechas abiertas**, siete de prioridad alta (sección 13).
+- **Hay 15 brechas abiertas**, siete de prioridad alta (sección 14).
 - **Registro de variables:**
   - 335 variables heredadas del proyecto anterior.
   - En 24 están identificados la hoja y el campo en el original.
@@ -364,6 +404,7 @@ Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nue
   - 79 dependen de brechas: 48 sin original y 31 con un original parcial.
   - 3 no tienen fuente.
   - 5 filas no tienen identificador.
+- **Procedencia sin investigar:** los 172 archivos están en nivel "por confirmar". Su entidad se asignó por nombre y contenido durante la migración, sin contraste con las publicaciones oficiales.
 - **Metadatos incompletos:**
   - la URL y la fecha de corte no están registradas para la mayoría de los archivos;
   - 5 entidades están por confirmar;
@@ -375,16 +416,17 @@ Mientras no se decida, **no se borra ni se sobrescribe ningún archivo**: el nue
   - tipos de medida que se solapan: total, cantidad, conteo, numérico.
 - **Validación externa:** la única contrastada es la del proyecto anterior, que comparó una sola provincia contra su informe publicado. Los originales se verificaron por integridad y contenido, no contra las entidades.
 
-## 17. Control del documento
+## 18. Control del documento
 
 | Versión | Fecha | Cambio | Aprobó |
 |---|---|---|---|
 | 0.1 | 2026-09-16 | Borrador inicial tras la migración | Pendiente |
+| 0.2 | 2026-09-17 | Estructura 00_Documentacion/01_Datos; manifiesto de integridad propio del repositorio; protocolo de investigación de procedencia | Pendiente |
 
 Este anexo se actualiza en tres casos:
 
 - cuando cambia una regla;
-- cuando se cierra una brecha de prioridad alta;
+- cuando se cierra una brecha de prioridad alta o cambia el nivel de procedencia de un grupo de archivos;
 - cuando se toma una de las decisiones marcadas como "decisión por tomar".
 
-Las cifras de las secciones 3, 5, 13 y 16 deben coincidir con el registro de fuentes y variables. Si no coinciden, manda el registro.
+Las cifras de las secciones 3, 5, 14 y 17 deben coincidir con el registro de fuentes y variables. Si no coinciden, manda el registro.
