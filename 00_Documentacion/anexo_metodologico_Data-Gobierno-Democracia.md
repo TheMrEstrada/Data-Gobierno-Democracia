@@ -1,6 +1,6 @@
 # Anexo metodológico — Repositorio de datos originales Data-Gobierno-Democracia
 
-**Versión:** borrador 0.9 · **Fecha:** 2026-09-17 · **Estado:** en revisión
+**Versión:** borrador 0.10 · **Fecha:** 2026-09-17 · **Estado:** en revisión
 
 ---
 
@@ -385,6 +385,8 @@ Un **pendiente** es una decisión o dato faltante sobre algo que ya está en el 
 
 **Cierre:** exige evidencia (archivo ingresado, MD5 y entrada de bitácora) y la aprobación de una persona. Un agente puede proponer el cierre, pero no ejecutarlo.
 
+Un pendiente cerrado **se elimina de la hoja Pendientes**, para que la hoja muestre solo lo que falta. Su rastro no se pierde: el cierre queda en la bitácora (hoja Control) con la fecha y la evidencia, y el resultado queda en la columna que se completó. Las brechas cerradas siguen la misma regla.
+
 **Brechas abiertas al inicio:**
 
 | Id | Tema | Prioridad |
@@ -476,6 +478,7 @@ La gestión de estos pendientes corresponde al equipo; el detalle está en las h
 | 0.7 | 2026-09-17 | Script `verificar_integridad.py` para comprobar el manifiesto; el `.docx` y su procedimiento de generación quedan descritos en `00_Documentacion/README.md` | Pendiente |
 | 0.8 | 2026-09-17 | La encuesta anonimizada sale del repositorio mientras se decide P-18; se documenta que la versión ya publicada permanece en el historial de git | Pendiente |
 | 0.9 | 2026-09-17 | Versiones vigentes declaradas para IRCA, mortalidad infantil y población (P-08 y P-09 cerrados) | Pendiente |
+| 0.10 | 2026-09-17 | Los pendientes y brechas resueltos se eliminan de sus hojas; su cierre queda en la bitácora | Pendiente |
 
 Este anexo se actualiza en tres casos:
 
