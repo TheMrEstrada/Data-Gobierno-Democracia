@@ -1,0 +1,6 @@
+# Archivos temporales de Microsoft Office (se crean mientras un documento esta abierto)
+~$*
+# Archivos del sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
